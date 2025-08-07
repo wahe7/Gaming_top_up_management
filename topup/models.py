@@ -16,5 +16,18 @@ class TopUpProduct(models.Model):
   
   def __str__(self):
     return f"{self.name} ({self.game.name})"     
-    
-    
+  
+class TopUpOrder(models.Model):
+  STATUS_CHOICES = [
+      ('pending', 'Pending'),
+      ('success', 'Success'),
+      ('failed', 'Failed'),
+  ]
+
+  user_email = models.EmailField()
+  product = models.ForeignKey(TopUpProduct, on_delete=models.CASCADE)
+  status = models.CharField(max_length=10, choices=STATUS_CHOICES)
+  created_at = models.DateTimeField(auto_now_add=True)
+
+  def __str__(self):
+    return f"{self.user_email} - {self.product.name} - {self.status}"
