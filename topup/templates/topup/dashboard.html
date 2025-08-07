@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analytics Dashboard</title>
+</head>
+<body>
+  <h1>📊 Top-Up Analytics Dashboard</h1>
+
+  <h2>Top 5 Most Purchased Products</h2>
+  <ul>
+    {% for item in top_products %}
+      <li>{{ item.product__name }} - {{ item.purchase_count }} orders</li>
+    {% empty %}
+      <li>No data</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Revenue (Last 7 Days)</h2>
+  <ul>
+    {% for entry in revenue_data %}
+      <li>{{ entry.date }}: ₹{{ entry.revenue }}</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Failed Payments (This Month)</h2>
+  <p>{{ failed_payments }} failed payments</p>
+</body>
+</html>
+
